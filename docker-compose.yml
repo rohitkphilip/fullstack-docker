@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  
+  vue-frontend:
+    build:
+      context: ./frontend/frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:3000
+    networks:
+      - test-network
+
+  flask-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 5050:5001
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
